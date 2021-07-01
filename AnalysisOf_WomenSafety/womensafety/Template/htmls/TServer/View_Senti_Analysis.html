@@ -1,0 +1,105 @@
+{% extends 'TServer/design1.html' %}
+{% block researchblock %}
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#FFFFFF;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			input{
+			font-family:'Russo One', sans-serif;
+			font-size:15px;
+			}
+
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+        .style2 {color: #FFFF00}
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+                    <form role="form" method="POST" >
+						{% csrf_token %}
+
+                          <span class="style1">SELECT CITY NAME::</span>
+                          <select name="mcity">
+											<option>--- Select ---</option>
+                                          <option>Delhi</option>
+                                          <option>Mumbai</option>
+                                          <option>Kolkata</option>
+                                          <option>Chennai</option>
+                                          <option>Hyderabad</option>
+                                          <option>Pune</option>
+                                          <option>Bangalore</option>
+                                          <option>Bhuvaneswar</option>
+                                          <option>Mysore</option>
+                      </select>
+
+                          <input name="submit" type="submit" class="style1">
+                    </form> 
+                  <br>
+				 <br>
+
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p class="text-uppercase pull-center style1">VIEW SENTIMENT ANALYSIS ON Tweets! </p>
+                            <hr>
+ 					<div class="userdetails">
+                    <table border="1">
+                        <tr>
+                            <th bgcolor="#FF0000"><span class="style2">USER NAME</span></th>
+                            <th bgcolor="#FF0000"><span class="style2">TWEET NAME</span></th>
+                            <th bgcolor="#FF0000"><span class="style2">TWEET DESC</span></th>
+                            <th bgcolor="#FF0000"><span class="style2">TWEET SENTIMENT ANALYSIS</span></th>
+                            <th bgcolor="#FF0000"><span class="style2">CITY NAME</span></th>
+                        </tr>
+                        {% for i in objects %}
+                        <tr>
+                        <td bgcolor="#FFFF00" style="color:black" ><span class="style1">{{i.uname}}</span></td>
+                        <td bgcolor="#FFFF00" style="color:black" ><span class="style1">{{i.tname}}</span></td>
+                        <td bgcolor="#FFFF00" style="color:red"><span class="style1">{{i.tdesc}}</span></td>
+                        
+                        <td bgcolor="#FFFF00" style="color:red"><span class="style1">{{i.sanalysis}}</span></td>
+                            <td bgcolor="#FFFF00" style="color:red"><span class="style1">{{i.names}}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                    <div class="sideimage"></div>
+
+
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

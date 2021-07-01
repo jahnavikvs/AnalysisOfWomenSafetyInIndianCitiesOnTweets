@@ -1,0 +1,107 @@
+{% extends 'RUser/design.html' %}
+{% block userblock %}
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#FFFFFF;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid red;
+    width: 1104px;
+    height: 442px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p class="text-uppercase pull-center style1">VIEW ALL TWEETS !!! </p>
+                            <hr>
+                            <div class="tweettext">
+                                <table border="1">
+                                    <tr>
+                                        {% for object in list_objects %}
+
+                                    <th style="color:red; font-size:20px; font-family:fantasy" >User Name</th>
+                                    
+                                    
+                                    <th style="color:red; font-size:20px; font-family:fantasy" >Tweet Description</th>
+                                    <th style="color:red; font-size:20px; font-family:fantasy" >Sentiment Anlaysis</th>
+                                        <th style="color:red; font-size:20px; font-family:fantasy" >Metro City </th>
+
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <td style="font-size:20px; font-family:fantasy" >{{object.userId.username}}</td>
+                                        
+                                        
+                                        <td style="... ">{{object.tdesc}}</td>
+                                        <td style="font-family:monospace; font-size:19px; ">{{object.sanalysis}}</td>
+                                         <td style="font-family:monospace; font-size:19px; ">{{object.names}}</td>
+
+
+
+                                        <td><a href="{% url 'ratings' object.id %}"> Like&nbsp&nbsp&nbsp({{object.ratings}})</a> </td>
+
+
+                                    <td><a href="{% url 'Review' object.id%}">Retweet </a> </td>
+
+
+                                        <td><a href="{% url 'dislikes' object.id %}">Dislike &nbsp&nbsp&nbsp({{object.dislikes}})</a> </td>
+
+                                  </tr>
+
+
+
+
+
+
+
+                                        {% endfor %}
+                                </table>
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>
